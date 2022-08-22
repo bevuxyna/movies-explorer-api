@@ -1,0 +1,20 @@
+{
+  "name": "movies-explorer-api",
+  "version": "1.0.0",
+  "description": "Backend for Movies Explorer",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "lint": "npx eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bevuxyna/movies-explorer-api.git"
+  },
+  "author": "Vlada Melnikova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bevuxyna/movies-explorer-api/issues"
+  }
+}
