@@ -16,5 +16,10 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/bevuxyna/movies-explorer-api/issues"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "mongoose": "^6.5.2",
+    "validator": "^13.7.0"
   }
 }
