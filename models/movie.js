@@ -25,7 +25,9 @@ const movieSchema = new mongoose.Schema({
   image: {
     type: String,
     validate: {
-      validator: (value) => validator.isURL(value),
+      validator(v) {
+        return /^(https?:\/\/)?([\w-]{1,32}\.[\w-]{1,32})[^\s@]*/gm.test(v);
+      },
       message: 'Введена некорректная ссылка',
     },
     required: [true, 'Введите ссылку на постер к фильму'],
@@ -33,7 +35,9 @@ const movieSchema = new mongoose.Schema({
   trailerLink: {
     type: String,
     validate: {
-      validator: (value) => validator.isURL(value),
+      validator(v) {
+        return /^(https?:\/\/)?([\w-]{1,32}\.[\w-]{1,32})[^\s@]*/gm.test(v);
+      },
       message: 'Введена некорректная ссылка',
     },
     required: [true, 'Введите ссылку на трейлер фильма'],
@@ -41,7 +45,9 @@ const movieSchema = new mongoose.Schema({
   thumbnail: {
     type: String,
     validate: {
-      validator: (value) => validator.isURL(value),
+      validator(v) {
+        return /^(https?:\/\/)?([\w-]{1,32}\.[\w-]{1,32})[^\s@]*/gm.test(v);
+      },
       message: 'Введена некорректная ссылка',
     },
     required: [true, 'Введите ссылку на миниатюрное изображение постера к фильму'],
