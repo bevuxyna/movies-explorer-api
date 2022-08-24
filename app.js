@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const routes = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorHandler = require('./middlewares/errors');
+const cors = require('./middlewares/cors');
 
 mongoose.connect('mongodb://localhost:27017/bitfilmsdb', {
   useNewUrlParser: true,
@@ -12,6 +13,8 @@ mongoose.connect('mongodb://localhost:27017/bitfilmsdb', {
 const { PORT = 3000 } = process.env;
 
 const app = express();
+
+app.use(cors);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
