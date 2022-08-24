@@ -9,7 +9,7 @@ const cors = require('./middlewares/cors');
 
 const limiter = require('./utils/rateLimiter');
 
-mongoose.connect('mongodb://localhost:27017/bitfilmsdb', {
+mongoose.connect('mongodb://localhost:27017/moviesdb', {
   useNewUrlParser: true,
 });
 
