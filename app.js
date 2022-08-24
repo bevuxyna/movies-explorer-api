@@ -1,11 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const helmet = require('helmet');
 const routes = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorHandler = require('./middlewares/errors');
 const cors = require('./middlewares/cors');
-const helmet = require('helmet');
+
 const limiter = require('./utils/rateLimiter');
 
 mongoose.connect('mongodb://localhost:27017/bitfilmsdb', {
