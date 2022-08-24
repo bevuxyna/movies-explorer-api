@@ -28,20 +28,17 @@ module.exports.getUserInfo = (req, res, next) => {
 
 module.exports.createUser = (req, res, next) => {
   const {
-    name, about, avatar, email,
+    name, email, password,
   } = req.body;
 
   // хешируем пароль
-  bcrypt.hash(req.body.password, 10)
+  bcrypt.hash(password, 10)
     .then((hash) => User.create({
-      name, about, avatar, email, password: hash,
+      name, email, password: hash,
     }))
     .then((data) => {
       res.status(CREATED).send({
         name: data.name,
-        about: data.about,
-        avatar: data.avatar,
-        _id: data._id,
         email: data.email,
       });
     })
@@ -61,11 +58,11 @@ module.exports.createUser = (req, res, next) => {
 };
 
 module.exports.updateUserInfo = (req, res, next) => {
-  const { name, about } = req.body;
+  const { name, email } = req.body;
 
   User.findByIdAndUpdate(
     req.user._id,
-    { name, about },
+    { name, email },
     {
       new: true, // обработчик then получит на вход обновлённую запись
       runValidators: true, // данные будут валидированы перед изменением
