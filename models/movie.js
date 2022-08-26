@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { urlRegex } = require('../utils/urlRegex');
 
 const movieSchema = new mongoose.Schema({
   country: {
@@ -25,7 +26,7 @@ const movieSchema = new mongoose.Schema({
     type: String,
     validate: {
       validator(v) {
-        return /^(https?:\/\/)?([\w-]{1,32}\.[\w-]{1,32})[^\s@]*/gm.test(v);
+        return urlRegex.test(v);
       },
       message: 'Введена некорректная ссылка',
     },
@@ -35,7 +36,7 @@ const movieSchema = new mongoose.Schema({
     type: String,
     validate: {
       validator(v) {
-        return /^(https?:\/\/)?([\w-]{1,32}\.[\w-]{1,32})[^\s@]*/gm.test(v);
+        return urlRegex.test(v);
       },
       message: 'Введена некорректная ссылка',
     },
@@ -45,7 +46,7 @@ const movieSchema = new mongoose.Schema({
     type: String,
     validate: {
       validator(v) {
-        return /^(https?:\/\/)?([\w-]{1,32}\.[\w-]{1,32})[^\s@]*/gm.test(v);
+        return urlRegex.test(v);
       },
       message: 'Введена некорректная ссылка',
     },
