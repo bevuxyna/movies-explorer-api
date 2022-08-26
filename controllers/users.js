@@ -13,6 +13,7 @@ const {
   USER_CONFLICT_ERROR,
   USER_INVALID_DATA,
   USER_INVALID_UPDATEDATA,
+  VALIDATION_ERROR,
 } = require('../utils/statusMessage');
 
 module.exports.getUserInfo = (req, res, next) => {
@@ -48,7 +49,7 @@ module.exports.createUser = (req, res, next) => {
         return;
       }
 
-      if (err.name === 'ValidationError') {
+      if (err.name === VALIDATION_ERROR) {
         next(new BadRequestError(USER_INVALID_DATA));
         return;
       }
@@ -77,7 +78,7 @@ module.exports.updateUserInfo = (req, res, next) => {
         return;
       }
 
-      if (err.name === 'ValidationError') {
+      if (err.name === VALIDATION_ERROR) {
         next(new BadRequestError(USER_INVALID_UPDATEDATA));
         return;
       }

@@ -8,6 +8,9 @@ const {
   MOVIE_INVALID_DATA,
   MOVIE_FORBIDDEN_DELETE,
   UNAUTHORIZED,
+  VALIDATION_ERROR,
+  CAST_ERROR,
+  SUCCESS,
 } = require('../utils/statusMessage');
 
 module.exports.getMovies = (req, res, next) => {
@@ -49,7 +52,7 @@ module.exports.createMovie = (req, res, next) => {
   })
     .then((movie) => res.status(CREATED).send(movie))
     .catch((err) => {
-      if (err.name === 'ValidationError') {
+      if (err.name === VALIDATION_ERROR) {
         next(new BadRequestError(MOVIE_INVALID_DATA));
         return;
       }
@@ -69,9 +72,9 @@ module.exports.deleteMovie = (req, res, next) => {
       }
       return Movie.remove(movie);
     })
-    .then(() => res.status(200).send({ message: 'Успешно' }))
+    .then(() => res.status(200).send({ message: SUCCESS }))
     .catch((err) => {
-      if (err.name === 'CastError') {
+      if (err.name === CAST_ERROR) {
         next(new BadRequestError(UNAUTHORIZED));
         return;
       }

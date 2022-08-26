@@ -18,6 +18,12 @@ const UNAUTHORIZED = 'Необходима авторизация';
 
 const SERVER_ERROR = 'На сервере произошла ошибка';
 
+const VALIDATION_ERROR = 'ValidationError';
+
+const CAST_ERROR = 'CastError';
+
+const SUCCESS = 'Успешно';
+
 module.exports = {
   USER_NOT_FOUND,
   MOVIE_NOT_FOUND,
@@ -29,4 +35,7 @@ module.exports = {
   ID_INVALID,
   UNAUTHORIZED,
   SERVER_ERROR,
+  VALIDATION_ERROR,
+  CAST_ERROR,
+  SUCCESS,
 };
