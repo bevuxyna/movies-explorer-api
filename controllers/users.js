@@ -17,13 +17,7 @@ module.exports.getUserInfo = (req, res, next) => {
       }
       res.send(user);
     })
-    .catch((err) => {
-      if (err.name === 'CastError') {
-        next(new BadRequestError('Невалидный id'));
-        return;
-      }
-      next(err);
-    });
+    .catch((err) => next(err));
 };
 
 module.exports.createUser = (req, res, next) => {
@@ -72,10 +66,16 @@ module.exports.updateUserInfo = (req, res, next) => {
       res.send(data);
     })
     .catch((err) => {
+      if (err.code === 11000) {
+        next(new ConflictError('Пользователь с таким email уже существует'));
+        return;
+      }
+
       if (err.name === 'ValidationError') {
         next(new BadRequestError('Переданы некорректные данные при обновлении профиля'));
         return;
       }
+
       next(err);
     });
 };
