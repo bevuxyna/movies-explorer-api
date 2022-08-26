@@ -8,12 +8,18 @@ const ConflictError = require('../errors/conflict-error');
 const { CREATED } = require('../utils/status');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
+const {
+  USER_NOT_FOUND,
+  USER_CONFLICT_ERROR,
+  USER_INVALID_DATA,
+  USER_INVALID_UPDATEDATA,
+} = require('../utils/statusMessage');
 
 module.exports.getUserInfo = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
       if (!user) {
-        throw new NotFoundError('Нет пользователя с таким id');
+        throw new NotFoundError(USER_NOT_FOUND);
       }
       res.send(user);
     })
@@ -38,12 +44,12 @@ module.exports.createUser = (req, res, next) => {
     })
     .catch((err) => {
       if (err.code === 11000) {
-        next(new ConflictError('Пользователь с таким email уже существует'));
+        next(new ConflictError(USER_CONFLICT_ERROR));
         return;
       }
 
       if (err.name === 'ValidationError') {
-        next(new BadRequestError('Переданы некорректные данные при создании пользователя'));
+        next(new BadRequestError(USER_INVALID_DATA));
         return;
       }
 
@@ -67,12 +73,12 @@ module.exports.updateUserInfo = (req, res, next) => {
     })
     .catch((err) => {
       if (err.code === 11000) {
-        next(new ConflictError('Пользователь с таким email уже существует'));
+        next(new ConflictError(USER_CONFLICT_ERROR));
         return;
       }
 
       if (err.name === 'ValidationError') {
-        next(new BadRequestError('Переданы некорректные данные при обновлении профиля'));
+        next(new BadRequestError(USER_INVALID_UPDATEDATA));
         return;
       }
 
