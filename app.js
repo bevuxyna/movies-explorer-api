@@ -16,24 +16,24 @@ mongoose.connect(MONGO_LINK, {
 
 const app = express();
 
-app.use(helmet());
+app.use(requestLogger); // подключаем логгер запросов
 
-app.use(cors);
+app.use(limiter);
+
+app.use(helmet());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(requestLogger); // подключаем логгер запросов
+app.use(cors);
 
 app.use(routes);
 
-app.use(limiter);
-
 app.use(errorLogger); // подключаем логгер ошибок
 
-app.use(errorHandler); // обработчик ошибок
-
 app.use(errors()); // обработчик ошибок celebrate
+
+app.use(errorHandler); // централизованный обработчик ошибок
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
