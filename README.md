@@ -16,6 +16,7 @@
 
 API доступен по адресу:
 https://api.bevuxynadiploma.nomoredomains.sbs
+
 ## Features
 
 - Все роуты, кроме аутентификации и авторизации, защищены авторизацией.
@@ -31,45 +32,45 @@ https://api.bevuxynadiploma.nomoredomains.sbs
 Создание пользователя с переданными в теле
 email, password и name
 
-```http
+```
   POST /signup
 ```
 
 Проверка переданных в теле почты и пароля
 и возвращение JWT
 
-```http
+```
   POST /signin
 ```
 
 Получение информации о пользователе (email и имя)
 
-```http
+```
   GET /users/me
 ```
 
 Обновление информации о пользователе (email и имя)
 
-```http
+```
   PATCH /users/me
 ```
 
 Получение всех фильмов, сохранённых текущим  пользователем
 
-```http
+```
   GET /movies
 ```
 
 Создание фильма с переданными в теле
 country, director, duration, year, description, image, trailer, nameRU, nameEN и thumbnail, movieId
 
-```http
+```
   POST /movies
 ```
 
 Удаление сохранённого фильма по id
 
-```http
+```
   DELETE /movies/_id 
 ```
 
